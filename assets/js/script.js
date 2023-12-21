@@ -14,7 +14,7 @@ let moodToGenre = {
     "Weird": 878, // Science Fiction
 };
 
-genreId = moodToGenre.Happy;
+genreId = moodToGenre.Weird;
 
 let movieQueryURL = "https://api.themoviedb.org/3/discover/movie?include_adult=true&with_genres=" + genreId + "&language=en&api_key=668bc020b016a4e4178a7d0b2987ac04";
 
@@ -24,6 +24,26 @@ fetch(movieQueryURL)
     })
     .then(function (data) {
         console.log(data);
+        console.log(data.results);
+        let movieArray = data.results;
+        for (let i = 0; i < movieArray.length; i++) {
+            let newCol = $('<div>').addClass('col');
+            movieSection.append(newCol);
+
+            let newCard = $('<div>').addClass('card'); //.css("width", "10rem")
+            newCol.append(newCard);
+
+            let moviePoster = $('<img>').addClass('card-img-top');
+            let getposterinfo = movieArray[i].poster_path;
+            moviePoster.attr("src","https://www.themoviedb.org/t/p/w220_and_h330_face"+ getposterinfo);
+            newCard.append(moviePoster);
+
+            let cardBody = $('<div>').addClass('card-body');
+            let movieTitle = $('<h5>').addClass('card-title').text(movieArray[i].title);
+            let movieOwerview = $('<p>').addClass('card-text').text(movieArray[i].overview);
+            cardBody.append(movieTitle, movieOwerview);
+            newCard.append(cardBody);
+        }
     })
     .catch(function (error) {
         console.error(error);
