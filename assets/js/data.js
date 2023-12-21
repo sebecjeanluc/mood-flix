@@ -8,23 +8,19 @@ const feelings = {
 		'Regret',
 		'Loneliness',
 	],
-	Fearful: ['Worry', 'Terror', 'Panic', 'Nervousness', 'Apprehension'],
-	Angry: ['Rage', 'Irritation', 'Annoyance', 'Envy', 'Bitterness'],
-	Loving: ['Adoration', 'Fondness', 'Infatuation', 'Passion'],
-	Surprised: ['Astonishment', 'Shock', 'Bewilderment'],
-	Disgusted: ['Contempt', 'Loathing', 'Aversion', 'Distaste'],
 }
 
 const categories = {
 	EmotionMovieAssociations: {
 		Happy: ['Comedy', 'Feel-Good', 'Inspirational'],
 		Sad: ['Drama', 'Tragic Romance', 'Comedy'],
-		Fearful: ['Thriller', 'Horror', 'Documentary'],
+		Dark: ['Thriller', 'Horror', 'Documentary'],
 		Angry: ['Action', 'Sports', 'Social Drama'],
 		Loving: ['Romantic Comedy', 'Epic Romance', 'Heartfelt Drama'],
 		Surprised: ['Mystery', 'Plot-Twist', 'Sci-Fi'],
 		Disgusted: ['Documentary', 'Satire', 'Challenging'],
 	},
+
 	MovieCategories: [
 		'Comedy',
 		'Feel-Good',

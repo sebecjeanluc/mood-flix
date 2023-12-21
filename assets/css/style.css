@@ -12,6 +12,7 @@ header {
 
 .content__wrapper {
 	text-align: center;
+	width: 100%;
 }
 
 .flex__wrapper {
@@ -32,7 +33,7 @@ header {
 
 #bookSection {
 	width: 40%;
-	background: purple;
+	/* background: purple; */
 }
 
 footer {
