@@ -41,8 +41,12 @@ fetch(movieQueryURL)
             let cardBody = $('<div>').addClass('card-body');
             let movieTitle = $('<h5>').addClass('card-title').text(movieArray[i].title);
             let movieOwerview = $('<p>').addClass('card-text').text(movieArray[i].overview);
-            cardBody.append(movieTitle, movieOwerview);
+            
             newCard.append(cardBody);
+
+            let movieReleaseYear = $('<p>').addClass('card-text').text("Release Year: " + (dayjs(movieArray[i].release_date)).format("YYYY"));
+            let rating = $('<p>').addClass('card-text').text("Rating: " + (movieArray[i].vote_average))
+            cardBody.append(movieTitle, movieOwerview, movieReleaseYear, rating);
         }
     })
     .catch(function (error) {
