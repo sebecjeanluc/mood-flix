@@ -1,5 +1,5 @@
 const API_KEY = 'AIzaSyBm8o9amGgOHyp27HXXiYqY4wD16VrGMxk'
-const bookSection = $('#bookSection')
+const bookSection = $('#book-section')
 const keyword = 'science+fiction'
 let queryURL =
 	'https://www.googleapis.com/books/v1/volumes?q=' +
