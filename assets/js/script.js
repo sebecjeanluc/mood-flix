@@ -1,5 +1,5 @@
-let moodSearch = $('#moodSearch');
-let movieSection = $('#movieSection');
+let moodSearch = $('#mood-search');
+let movieSection = $('#movie-section');
 
 
 
@@ -8,13 +8,14 @@ let moodArray = ["Happy", "Sad", "Excited", "Nostalgic", "Romantic", "Weird"];
 let moodToGenre = {
     "Happy": 35, // Happy would mean genre Comedy the number is from the API documentation for each genre
     "Sad": 18, // Drama
-    "Excited": 28, // Action
-    "Nostalgic": 10751, // Family
+    "Gloomy": 10751, // Family
+    "Excited": 10751, // Family
+    "Angry": 10749, // Romance
     "Romantic": 10749, // Romance
-    "Weird": 878, // Science Fiction
+    // "Weird": 878, // Science Fiction
 };
 
-genreId = moodToGenre.Weird;
+genreId = moodToGenre.Romantic;
 
 let movieQueryURL = "https://api.themoviedb.org/3/discover/movie?include_adult=true&with_genres=" + genreId + "&language=en&api_key=668bc020b016a4e4178a7d0b2987ac04";
 
@@ -25,28 +26,73 @@ fetch(movieQueryURL)
     .then(function (data) {
         console.log(data);
         console.log(data.results);
+
         let movieArray = data.results;
+
+        let movieContainer = $('<div>').addClass('row');
+        movieSection.append(movieContainer);
+
         for (let i = 0; i < movieArray.length; i++) {
-            let newCol = $('<div>').addClass('col');
-            movieSection.append(newCol);
+            let newCol = $('<div>').addClass('col-md-6 col-12 mb-2');
+            movieContainer.append(newCol);
 
             let newCard = $('<div>').addClass('card'); //.css("width", "10rem")
             newCol.append(newCard);
 
             let moviePoster = $('<img>').addClass('card-img-top');
             let getposterinfo = movieArray[i].poster_path;
-            moviePoster.attr("src","https://www.themoviedb.org/t/p/w220_and_h330_face"+ getposterinfo);
+            moviePoster.attr("src", "https://www.themoviedb.org/t/p/w220_and_h330_face" + getposterinfo);
             newCard.append(moviePoster);
 
             let cardBody = $('<div>').addClass('card-body');
             let movieTitle = $('<h5>').addClass('card-title').text(movieArray[i].title);
             let movieOwerview = $('<p>').addClass('card-text').text(movieArray[i].overview);
-            
+
             newCard.append(cardBody);
 
             let movieReleaseYear = $('<p>').addClass('card-text').text("Release Year: " + (dayjs(movieArray[i].release_date)).format("YYYY"));
-            let rating = $('<p>').addClass('card-text').text("Rating: " + (movieArray[i].vote_average))
-            cardBody.append(movieTitle, movieOwerview, movieReleaseYear, rating);
+            let rating = $('<p>').addClass('card-text').text("Rating: " + (movieArray[i].vote_average));
+
+            let genre = $('<p>').addClass('card-text').text('Genres: ' + getGenreName(movieArray[i].genre_ids));
+
+            cardBody.append(movieTitle, movieOwerview, movieReleaseYear, rating, genre);
+
+            function getGenreName(genreIds) {
+                const genres = [
+                    { id: 28, name: "Action" },
+                    { id: 12, name: "Adventure" },
+                    { id: 16, name: "Animation" },
+                    { id: 35, name: "Comedy" },
+                    { id: 80, name: "Crime" },
+                    { id: 99, name: "Documentary" },
+                    { id: 18, name: "Drama" },
+                    { id: 10751, name: "Family" },
+                    { id: 14, name: "Fantasy" },
+                    { id: 36, name: "History" },
+                    { id: 27, name: "Horror" },
+                    { id: 10402, name: "Music" },
+                    { id: 9648, name: "Mystery" },
+                    { id: 10749, name: "Romance" },
+                    { id: 878, name: "Science Fiction" },
+                    { id: 10770, name: "TV Movie" },
+                    { id: 53, name: "Thriller" },
+                    { id: 10752, name: "War" },
+                    { id: 37, name: "Western" }
+                ];
+
+                const genreNamesArray = genreIds.map(genreId => {
+                    const genre = genres.find(genre => genre.id === genreId);
+
+                    if (genre) {
+                        return genre.name;
+                    } else {
+                        return "Unknown Genre";
+                    };
+
+                });
+            
+                return genreNamesArray.join(', ');
+            }
         }
     })
     .catch(function (error) {
