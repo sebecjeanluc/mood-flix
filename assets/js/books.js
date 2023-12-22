@@ -1,3 +1,6 @@
+// let bookSeedData
+// console.log(bookSeedData)
+
 const API_KEY = 'AIzaSyBm8o9amGgOHyp27HXXiYqY4wD16VrGMxk'
 const bookSection = $('#book-section')
 const keyword = 'science+fiction'
@@ -53,20 +56,21 @@ function showBookContainer(imageURL, title, author, description) {
 	bookWrapper.append(bookContainer)
 }
 
-fetch(queryURL)
-	.then(function (reponse) {
-		return reponse.json()
-	})
-	.then(function (data) {
-		const bookItems = data.items
-		console.log(bookItems[0])
-		for (let i = 0; i < bookItems.length; i++) {
-			let title = bookItems[i].volumeInfo.title
-			let authorName = bookItems[i].volumeInfo.authors
-			let image = bookItems[i].volumeInfo.imageLinks.smallThumbnail
-			let year = bookItems[i].volumeInfo.imageLinks.smallThumbnail
-			// console.log(image)
-			let description = bookItems[i].searchInfo.textSnippet
-			showBookContainer(image, title, authorName, description)
-		}
-	})
+// fetch(queryURL)
+// 	.then(function (reponse) {
+// 		return reponse.json()
+// 	})
+// 	.then(function (data) {
+// const bookItems = data.items
+let bookItems = bookSeedData
+console.log(bookItems)
+for (let i = 0; i < bookItems.length; i++) {
+	let title = bookItems[i].volumeInfo.title
+	let authorName = bookItems[i].volumeInfo.authors
+	let image = bookItems[i].volumeInfo.imageLinks.smallThumbnail
+	let year = bookItems[i].volumeInfo.imageLinks.smallThumbnail
+	// console.log(image)
+	let description = bookItems[i].searchInfo.textSnippet
+	showBookContainer(image, title, authorName, description)
+}
+// })
