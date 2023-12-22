@@ -9,6 +9,27 @@ let queryURL =
 
 // console.log(queryURL)
 
+// Random category selection function
+// function randomCategory
+// Use the floor, RAM index to get random number
+// loop the category array and choose the random number
+// return that category
+
+// Create a function to show the first loading page with category
+// use the random category function
+// use that category in the query
+// return the sepected items of books
+
+// Feelings convert to category function
+// get the object of feeling-category
+// return the selected category
+
+// Category search for the query
+// get the user input of feeling
+// user the feeling conveter to category
+// use the function with the category
+// use the showBookContainer function
+
 let bookWrapper = $('<div>')
 bookWrapper.attr('class', 'row')
 bookSection.append(bookWrapper)
