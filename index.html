@@ -8,54 +8,75 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 	<link rel="stylesheet" href="./assets/css/style.css" />
+  <!-- google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400&family=Work+Sans:wght@300&display=swap" rel="stylesheet">
 	<title>Mood-Flix</title>
 </head>
 
 <body>
-	<nav class="navbar bg-body-tertiary">
-		<div class="container-fluid d-flex  justify-content-center">
+  <header>
+    <div class="card">
+      <div class="card-header">
+        MOODFLIX
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">DISCOVER THE PERFECT WATCH FOR EVERY MOOD AT MOOD FLIX – JUST CLICK YOUR FEELING AND LET US RECOMMEND A WORLD OF ENTERTAINMENT TAILORED TO YOUR EMOTIONS</h3>
+      </div>
+    </div>
+  </header>
+	<nav class="navbar bg-body-tertiary p-2">
+		<div class="container-fluid d-flex justify-content-center nav-background">
 			<a class="navbar-brand fw-bold">
-				<h1>Mood Flix</h1>
+				<h1 class="p-3 text-light">Mood Flix</h1>
 			</a>
 		</div>
 	</nav>
 
 	<div id="main-body" class="container-fluid">
-		<section id="mood-section" class="container-fluid d-flex flex-column align-items-center p-3">
+		<section id="mood-section" class="container-fluid d-flex flex-column align-items-center py-5 my-3">
 			<div class="mb-3">
-				<h2>How are you feeling today? Choose below?</h2>
+				<h2>How are you feeling today?</h2>
 			</div>
-			<div class="d-flex justify-content-center flex-wrap">
+			<div class="d-flex justify-content-center flex-wrap"><i class="fa-solid fa-face-smile-beam"></i>
 				<button type="button" id="happy" class="btn btn-outline-primary mx-2 mb-2">Happy</button>
 				<button type="button" id="sad" class="btn btn-outline-secondary mx-2 mb-2">Sad</button>
 				<button type="button" id="gloomy" class="btn btn-outline-success mx-2 mb-2">Gloomy</button>
 				<button type="button" id="angry" class="btn btn-outline-danger mx-2 mb-2">Angry</button>
 				<button type="button" id="excited" class="btn btn-outline-warning mx-2 mb-2">Excited</button>
 				<button type="button" id="romantic" class="btn btn-outline-info mx-2 mb-2">Romantic</button>
-				<button type="button" id="weird" class="btn btn-outline-light mx-2 mb-2">Weird</button>
+				<button type="button" id="weird" class="btn btn-outline-light mx-2 mb-2" style="border:1px solid gray; color: gray">Weird</button>
 			</div>
 		</section>
 		<div class="content container-fluid">
 			<div class="row">
 				<div class="col-md-5 order-2 order-md-1 col-6">
 					<section id="movie-section" class="text-center">
-						<h2>Movie section</h2>
+						<h2 class="pb-4">Movies</h2>
 					</section>
 				</div>
 
 				<div class="col-md-2 order-1 order-md-2">
 					<section id="faved-section" class="text-center">
-						<h2>Faved section</h2>
+						<h2 class="pb-4">Your Faved</h2>
 					</section>
 				</div>
 
 				<div class="col-md-5 order-3 order-md-3 col-6">
 					<section id="book-section" class="text-center">
-						<h2>Book Section</h2>
+						<h2  class="pb-4">Books</h2>
 					</section>
 				</div>
 			</div>
 		</div>
+    <footer class="text-center bg-light text-muted">
+      <section class="p-4">
+          <div class="me-5">
+              <span>©︎Mood-Flix 2023 supported by EdX</span>
+          </div>
+      </section>
+    </footer>
 		<script
 			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 			integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
