@@ -45,7 +45,7 @@ fetch(queryURL)
 			let image = bookItems[i].volumeInfo.imageLinks.smallThumbnail
 			let year = bookItems[i].volumeInfo.imageLinks.smallThumbnail
 			// console.log(image)
-			// let description = bookItems[i].searchInfo.textSnippet
-			// showBookContainer(image, title, authorName, description)
+			let description = bookItems[i].searchInfo.textSnippet
+			showBookContainer(image, title, authorName, description)
 		}
 	})
