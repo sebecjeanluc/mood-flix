@@ -37,9 +37,10 @@ let bookWrapper = $('<div>')
 bookWrapper.attr('class', 'row')
 bookSection.append(bookWrapper)
 
-function showBookContainer(imageURL, title, author, description) {
+function showBookContainer(id, imageURL, title, author, description) { //added id
 	let bookContainer = $('<div>')
-	bookContainer.attr('class', 'col-md-6 col-12')
+	bookContainer.attr('id', id) // created id attr
+	bookContainer.attr('class', 'col-md-6 col-12 book-div') // added additional class book-div 
 	let imageThumb = $('<img>')
 	imageThumb.attr('src', imageURL)
 	bookContainer.append(imageThumb)
@@ -65,12 +66,14 @@ function showBookContainer(imageURL, title, author, description) {
 let bookItems = bookSeedData
 console.log(bookItems)
 for (let i = 0; i < bookItems.length; i++) {
+	let id = bookItems[i].id // getting the id's of the various books
 	let title = bookItems[i].volumeInfo.title
 	let authorName = bookItems[i].volumeInfo.authors
 	let image = bookItems[i].volumeInfo.imageLinks.smallThumbnail
 	let year = bookItems[i].volumeInfo.imageLinks.smallThumbnail
 	// console.log(image)
 	let description = bookItems[i].searchInfo.textSnippet
-	showBookContainer(image, title, authorName, description)
+	showBookContainer(id, image, title, authorName, description)
 }
 // })
+
