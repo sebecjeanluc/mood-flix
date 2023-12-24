@@ -50,10 +50,10 @@ let generateMovieCards = function (mood) {
 
                 newCard.append(cardBody);
 
-                let movieReleaseYear = $('<p>').addClass('card-text').text("Release Year: " + (dayjs(movieArray[i].release_date)).format("YYYY"));
-                let rating = $('<p>').addClass('card-text').text("Rating: " + (movieArray[i].vote_average));
+                let movieReleaseYear = $('<p>').addClass('card-text').html("<strong>Release Year: </strong>" + (dayjs(movieArray[i].release_date)).format("YYYY"));
+                let rating = $('<p>').addClass('card-text').html("<strong>Rating: </strong>" + (movieArray[i].vote_average));
 
-                let genre = $('<p>').addClass('card-text').text('Genres: ' + getGenreName(movieArray[i].genre_ids));
+                let genre = $('<p>').addClass('card-text').html('<strong>Genres: </strong>' + getGenreName(movieArray[i].genre_ids));
 
                 cardBody.append(movieTitle, movieOwerview, movieReleaseYear, rating, genre);
             }
