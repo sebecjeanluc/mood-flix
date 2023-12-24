@@ -25,7 +25,7 @@ let generateMovieCards = function (mood) {
         .then(function (data) {
             console.log(data.results);
             // to clear any existing movies
-            movieSection.empty();
+            movieSection.find('.row').empty();
 
             let movieArray = data.results;
 
