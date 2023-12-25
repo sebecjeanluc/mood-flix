@@ -21,17 +21,17 @@ function favouriteCardDiv(
 
   let favedCardDivLiTitle = $('<li>')
   favedCardDivLiTitle.addClass("list-group-item")
-  favedCardDivLiTitle.text('Title:' + cardTitle)
+  favedCardDivLiTitle.text('Title: ' + cardTitle)
 
 
   let favedCardDivLiAuthor = $('<li>')
   favedCardDivLiAuthor.addClass("list-group-item")
-  favedCardDivLiAuthor.text('Author:' + cardAuthor) 
+  favedCardDivLiAuthor.text('Author: ' + cardAuthor) 
 
  
   let favedCardDivLiDescription = $('<li>')
   favedCardDivLiDescription.addClass("list-group-item")
-  favedCardDivLiDescription.text('Description:' + cardDescription)
+  favedCardDivLiDescription.text('Description: ' + cardDescription)
 
   
   favedCardDivUl.append(favedCardDivLiTitle, favedCardDivLiAuthor, favedCardDivLiDescription)
