@@ -1,4 +1,5 @@
 let bookSectionEl = $('#book-section')
+let movieSectionEl = $('#movie-section')
 
 function favouriteCardDiv(
   cardImageSrc,  
@@ -44,8 +45,8 @@ function favouriteCardDiv(
 
 
 bookSectionEl.on('click', function(event) {
-console.log(event.target.id)
-console.log(event.target.parentElement) // getting the parent element
+// console.log(event.target.id)
+// console.log(event.target.parentElement) // getting the parent element
 
 
 if(event.target.parentElement.classList.contains("book-div")){
@@ -57,13 +58,27 @@ if(event.target.parentElement.classList.contains("book-div")){
 //  console.log(bookTitle)
  
 const bookAuthor = book.querySelectorAll('p')[0].textContent
-console.log(book.querySelectorAll('p')[0].textContent)
+// console.log(book.querySelectorAll('p')[0].textContent)
 
 const bookDescription = book.querySelectorAll('p')[1].textContent
-console.log(book.querySelectorAll('p')[1].textContent)
+// console.log(book.querySelectorAll('p')[1].textContent)
 
 favouriteCardDiv(bookImage, bookTitle, bookAuthor, bookDescription)
 }
+})
+
+movieSectionEl.on('click', function(event) {
+  
+  console.log(event.target.id)
+
+  if(event.target.parentElement.classList.contains('movie-div')) {
+    const movie = event.target.parentElement
+    const movieImage = movie.querySelector('img').src
+
+    const movieTitle = movie.querySelector('h5').textContent
+    
+    const movie
+  }
 })
 
 
@@ -110,6 +125,7 @@ favouriteCardDiv(bookImage, bookTitle, bookAuthor, bookDescription)
 // favedCardDivImg.attr("src")
 // favedCardDivImg.addClass("card-img-top")
 // favedCardDivImg.attr("alt", "...")
+
 //  let favedCardDivUl = $('<ul>')
 //  favedCardDivUl.addClass("list-group list-group-flush text-start")
 
