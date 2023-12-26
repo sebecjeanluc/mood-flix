@@ -1,5 +1,6 @@
 let bookSectionEl = $('#book-section')
 
+
 function favouriteCardDiv(
   cardImageSrc,  
   cardTitle, 
