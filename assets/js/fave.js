@@ -1,6 +1,16 @@
 let bookSectionEl = $('#book-section')
+let movieSectionEl = $('#movie-section')
+let faveSectionEl = $('#faved-section');
 
-function favouriteCardDiv(
+const faveItemsFromStorage = JSON.parse(localStorage.getItem('favourite'))
+
+
+if(faveItemsFromStorage) {
+faveSectionEl.html(faveItemsFromStorage)
+}
+
+
+function createFavouriteBookDiv(
   cardImageSrc,  
   cardTitle, 
   cardAuthor,
@@ -40,12 +50,64 @@ function favouriteCardDiv(
 
   let faveCardSection = $("#faved-section")
   faveCardSection.append(favedCardDiv)
+
+  let faveItems = faveSectionEl.html()
+  localStorage.setItem('favourite', JSON.stringify(faveItems))
+  // console.log(faveItems);
+
+}
+
+console.log('hello')
+
+function createFavouriteMovieDiv(
+  cardImageSrc,  
+  cardTitle, 
+  cardYear,
+  cardDescription
+  ) {
+
+  let favedCardDiv = $('<div>')
+  favedCardDiv.addClass('card fave-card')
+  favedCardDiv.css("width", "18rem")
+
+  let favedCardDivImg = $("<img>")
+  favedCardDivImg.attr("src", cardImageSrc)
+  favedCardDivImg.addClass("card-img-top")
+  favedCardDivImg.attr("alt", cardTitle)
+
+  let favedCardDivUl = $('<ul>')
+  favedCardDivUl.addClass("list-group list-group-flush text-start")
+
+  let favedCardDivLiTitle = $('<li>')
+  favedCardDivLiTitle.addClass("list-group-item")
+  favedCardDivLiTitle.text('Title: ' + cardTitle)
+
+
+  let favedCardDivLiYear = $('<li>')
+  favedCardDivLiYear.addClass("list-group-item")
+  favedCardDivLiYear.text('Year: ' + cardYear) 
+
+ 
+  let favedCardDivLiDescription = $('<li>')
+  favedCardDivLiDescription.addClass("list-group-item")
+  favedCardDivLiDescription.text('Description: ' + cardDescription)
+
+  
+  favedCardDivUl.append(favedCardDivLiTitle, favedCardDivLiYear, favedCardDivLiDescription)
+
+  favedCardDiv.append(favedCardDivImg, favedCardDivUl)
+
+  let faveCardSection = $("#faved-section")
+  faveCardSection.append(favedCardDiv)
+
+  let faveItems = faveSectionEl.html() // after
+  localStorage.setItem('favourite', JSON.stringify(faveItems)) // after
 }
 
 
 bookSectionEl.on('click', function(event) {
-console.log(event.target.id)
-console.log(event.target.parentElement) // getting the parent element
+// console.log(event.target.id)
+// console.log(event.target.parentElement) // getting the parent element
 
 
 if(event.target.parentElement.classList.contains("book-div")){
@@ -57,14 +119,41 @@ if(event.target.parentElement.classList.contains("book-div")){
 //  console.log(bookTitle)
  
 const bookAuthor = book.querySelectorAll('p')[0].textContent
-console.log(book.querySelectorAll('p')[0].textContent)
+// console.log(book.querySelectorAll('p')[0].textContent)
 
 const bookDescription = book.querySelectorAll('p')[1].textContent
-console.log(book.querySelectorAll('p')[1].textContent)
+// console.log(book.querySelectorAll('p')[1].textContent)
 
-favouriteCardDiv(bookImage, bookTitle, bookAuthor, bookDescription)
+createFavouriteBookDiv(bookImage, bookTitle, bookAuthor, bookDescription)
 }
 })
+
+movieSectionEl.on('click', function(event) {
+  
+  if(event.target.parentElement.classList.contains('card')){
+  
+    const movie = event.target.parentElement
+   
+    const movieImage = movie.querySelector('img').src
+    
+    const movieTitle = movie.querySelector('h5').textContent
+    
+    
+    const movieDescription = movie.querySelectorAll('p')[0].textContent
+    
+    const movieYear = movie.querySelectorAll('p')[1].textContent
+ 
+
+    createFavouriteMovieDiv(movieImage, movieTitle, movieYear, movieDescription)
+  }
+})
+
+
+// console.log(createFavouriteBookDiv)
+// console.log(createFavouriteMovieDiv)
+
+
+
 
 
 
@@ -110,6 +199,7 @@ favouriteCardDiv(bookImage, bookTitle, bookAuthor, bookDescription)
 // favedCardDivImg.attr("src")
 // favedCardDivImg.addClass("card-img-top")
 // favedCardDivImg.attr("alt", "...")
+
 //  let favedCardDivUl = $('<ul>')
 //  favedCardDivUl.addClass("list-group list-group-flush text-start")
 
@@ -145,7 +235,7 @@ favouriteCardDiv(bookImage, bookTitle, bookAuthor, bookDescription)
 
 
 
-// favouriteCardDiv(favouriteItemsObject.src, " cardGenre1", " cardTitle1", " cardDescription1", " cardRating1", " cardYear1" )
+// favouriteCardDiv(" cardGenre1", " cardTitle1", " cardDescription1", " cardRating1", " cardYear1" )
 // favouriteCardDiv("...", " cardGenre2", " cardTitle2", " cardDescription2", " cardRating2", " cardYear2")
 
 

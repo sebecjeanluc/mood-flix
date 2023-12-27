@@ -64,7 +64,7 @@ function showBookContainer(id, imageURL, title, author, description) { //added i
 // 	.then(function (data) {
 // const bookItems = data.items
 let bookItems = bookSeedData
-console.log(bookItems)
+// console.log(bookItems)
 for (let i = 0; i < bookItems.length; i++) {
 	let id = bookItems[i].id // getting the id's of the various books
 	let title = bookItems[i].volumeInfo.title
