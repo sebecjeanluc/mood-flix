@@ -37,22 +37,39 @@ let bookWrapper = $('<div>')
 bookWrapper.attr('class', 'row')
 bookSection.append(bookWrapper)
 
-function showBookContainer(id, imageURL, title, author, description) { //added id
+function showBookContainer(id, imageURL, title, author, description) {
+	//added id
 	let bookContainer = $('<div>')
 	bookContainer.attr('id', id) // created id attr
-	bookContainer.attr('class', 'col-md-6 col-12 book-div') // added additional class book-div 
+	bookContainer.attr('class', 'col-md-6 col-12 mb-2 book-div')
+
+	let cardDiv = $('<div>')
+	cardDiv.attr('class', 'card')
+	bookContainer.append(cardDiv)
+
 	let imageThumb = $('<img>')
+	imageThumb.attr('class', 'card-img-top')
 	imageThumb.attr('src', imageURL)
-	bookContainer.append(imageThumb)
+	cardDiv.append(imageThumb)
+
+	let cardBody = $('<div>')
+	cardBody.attr('class', 'card-body')
+	cardDiv.append(cardBody)
+
+	let cardTitle = $('<div>')
+	cardTitle.attr('class', 'card-title')
+	cardBody.append(cardTitle)
 	let bookTitle = $('<h5>')
 	bookTitle.text(title)
-	bookContainer.append(bookTitle)
+	cardBody.append(bookTitle)
 	let authorName = $('<p>')
 	authorName.text('by ' + author)
-	bookContainer.append(authorName)
+	authorName.attr('class', 'card-text')
+	cardBody.append(authorName)
 	let descriptionText = $('<p>')
 	descriptionText.text(description)
-	bookContainer.append(descriptionText)
+	descriptionText.attr('class', 'card-text')
+	cardBody.append(descriptionText)
 
 	bookWrapper.append(bookContainer)
 }
@@ -76,4 +93,3 @@ for (let i = 0; i < bookItems.length; i++) {
 	showBookContainer(id, image, title, authorName, description)
 }
 // })
-
