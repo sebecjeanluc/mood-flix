@@ -97,12 +97,12 @@ function showBookContainer(id, imageURL, title, author, description) {
 	bookContainer.append(cardDiv)
 
 	let imageThumb = $('<img>')
-	imageThumb.attr('class', 'card-img-top')
+	imageThumb.attr('class', 'card-img-top card-img-minHeight')
 	imageThumb.attr('src', imageURL)
 	cardDiv.append(imageThumb)
 
 	let cardBody = $('<div>')
-	cardBody.attr('class', 'card-body')
+	cardBody.attr('class', 'card-body card-body-minHeight')
 	cardDiv.append(cardBody)
 
 	let cardTitle = $('<div>')

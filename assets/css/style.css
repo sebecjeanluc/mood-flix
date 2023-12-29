@@ -20,3 +20,11 @@ body {
 h1 {
 	font-size: 78px;
 }
+
+.card-body-minHeight {
+	height: 340px;
+}
+
+.card-img-minHeight {
+	height: 430px;
+}
