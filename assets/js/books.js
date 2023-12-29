@@ -3,39 +3,88 @@
 
 const API_KEY = 'AIzaSyBm8o9amGgOHyp27HXXiYqY4wD16VrGMxk'
 const bookSection = $('#book-section')
-const keyword = 'science+fiction'
-let queryURL =
-	'https://www.googleapis.com/books/v1/volumes?q=' +
-	keyword +
-	':keyes&key=' +
-	API_KEY
+// const keyword = 'science+fiction'
 
-// console.log(queryURL)
-
-// Random category selection function
-// function randomCategory
-// Use the floor, RAM index to get random number
-// loop the category array and choose the random number
-// return that category
-
-// Create a function to show the first loading page with category
-// use the random category function
-// use that category in the query
-// return the sepected items of books
-
-// Feelings convert to category function
-// get the object of feeling-category
-// return the selected category
-
-// Category search for the query
-// get the user input of feeling
-// user the feeling conveter to category
-// use the function with the category
-// use the showBookContainer function
+const categoryItems = [
+	'happy',
+	'sad',
+	'gloomy',
+	'angry',
+	'excited',
+	'romantic',
+	'weird',
+]
 
 let bookWrapper = $('<div>')
 bookWrapper.attr('class', 'row')
 bookSection.append(bookWrapper)
+
+// Random category selection function
+// function randomCategory
+function randomCategory() {
+	// Use the floor, RAM index to get random number
+	const randomNumber = Math.floor(Math.random() * 6) + 1
+	// console.log(randomNumber)
+	// choose the random number
+	let selectedCategoryItem = categoryItems[randomNumber]
+	// return that category
+	return selectedCategoryItem
+}
+
+// console.log(randomCategory())
+// Create a function to show the first loading page with category
+let randomCategoryName = randomCategory()
+console.log(randomCategoryName)
+
+function showBooksItems(keyword) {
+	bookWrapper.empty()
+	// use the random category function
+	// use that category in the query
+	let queryURL =
+		'https://www.googleapis.com/books/v1/volumes?q=' +
+		keyword +
+		':keyes&key=' +
+		API_KEY
+	console.log(queryURL)
+	// return the expected items of books
+	fetch(queryURL)
+		.then(function (reponse) {
+			return reponse.json()
+		})
+		.then(function (data) {
+			const bookItems = data.items
+			// let bookItems = bookSeedData
+			console.log(bookItems)
+			for (let i = 0; i < bookItems.length; i++) {
+				let id = bookItems[i].id // getting the id's of the various books
+				let title = bookItems[i].volumeInfo.title
+				let authorName = bookItems[i].volumeInfo.authors
+				let image =
+					bookItems[i].volumeInfo.imageLinks?.thumbnail ||
+					'./assets/images/noImage.png'
+				// let year = bookItems[i].volumeInfo.imageLinks.smallThumbnail
+				// console.log(image)
+				let description =
+					bookItems[i].searchInfo?.textSnippet || 'No content provided'
+				showBookContainer(id, image, title, authorName, description)
+			}
+		})
+}
+
+// Category search for the query
+// get the user input of feeling
+moodButtons.on('click', function (event) {
+	if (event.target.tagName === 'BUTTON') {
+		// to get the text info of the clicked button
+		let userMoodSelection = event.target.textContent
+		// console.log(userMoodSelection)
+		showBooksItems(userMoodSelection)
+	}
+})
+
+// user the feeling conveter to category
+// use the function with the category
+// use the showBookContainer function
 
 function showBookContainer(id, imageURL, title, author, description) {
 	//added id
@@ -74,22 +123,4 @@ function showBookContainer(id, imageURL, title, author, description) {
 	bookWrapper.append(bookContainer)
 }
 
-// fetch(queryURL)
-// 	.then(function (reponse) {
-// 		return reponse.json()
-// 	})
-// 	.then(function (data) {
-// const bookItems = data.items
-let bookItems = bookSeedData
-// console.log(bookItems)
-for (let i = 0; i < bookItems.length; i++) {
-	let id = bookItems[i].id // getting the id's of the various books
-	let title = bookItems[i].volumeInfo.title
-	let authorName = bookItems[i].volumeInfo.authors
-	let image = bookItems[i].volumeInfo.imageLinks.smallThumbnail
-	let year = bookItems[i].volumeInfo.imageLinks.smallThumbnail
-	// console.log(image)
-	let description = bookItems[i].searchInfo.textSnippet
-	showBookContainer(id, image, title, authorName, description)
-}
-// })
+showBooksItems(randomCategoryName)
