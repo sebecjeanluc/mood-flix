@@ -6,13 +6,25 @@ const bookSection = $('#book-section')
 // const keyword = 'science+fiction'
 
 const categoryItems = [
-	'happy',
-	'sad',
-	'gloomy',
-	'angry',
-	'excited',
-	'romantic',
-	'weird',
+	'Comedy',
+	'Feel-Good',
+	'Inspirational',
+	'Drama',
+	'Tragic+Romance',
+	'Thriller',
+	'Horror',
+	'Action',
+	'Sports',
+	'Social+Drama',
+	'Romantic+Comedy',
+	'Epic+Romance',
+	'Heartfelt+Drama',
+	'Mystery',
+	'Plot-Twist',
+	'Sci-Fi',
+	'Documentary',
+	'Satire',
+	'Challenging',
 ]
 
 let bookWrapper = $('<div>')
@@ -23,8 +35,7 @@ bookSection.append(bookWrapper)
 // function randomCategory
 function randomCategory() {
 	// Use the floor, RAM index to get random number
-	const randomNumber = Math.floor(Math.random() * 6) + 1
-	// console.log(randomNumber)
+	const randomNumber = Math.floor(Math.random() * categoryItems.length) + 1
 	// choose the random number
 	let selectedCategoryItem = categoryItems[randomNumber]
 	// return that category
@@ -37,13 +48,14 @@ let randomCategoryName = randomCategory()
 console.log(randomCategoryName)
 
 function showBooksItems(keyword) {
+	// clear the result page
 	bookWrapper.empty()
 	// use the random category function
 	// use that category in the query
 	let queryURL =
-		'https://www.googleapis.com/books/v1/volumes?q=' +
+		'https://www.googleapis.com/books/v1/volumes?q=famous+' +
 		keyword +
-		':keyes&key=' +
+		'&filter=ebooks&orderBy=relevance&maxResults=20&printType=books&:keyes&key=' +
 		API_KEY
 	console.log(queryURL)
 	// return the expected items of books
@@ -52,21 +64,34 @@ function showBooksItems(keyword) {
 			return reponse.json()
 		})
 		.then(function (data) {
-			const bookItems = data.items
-			// let bookItems = bookSeedData
-			console.log(bookItems)
-			for (let i = 0; i < bookItems.length; i++) {
-				let id = bookItems[i].id // getting the id's of the various books
-				let title = bookItems[i].volumeInfo.title
-				let authorName = bookItems[i].volumeInfo.authors
-				let image =
-					bookItems[i].volumeInfo.imageLinks?.thumbnail ||
-					'./assets/images/noImage.png'
-				// let year = bookItems[i].volumeInfo.imageLinks.smallThumbnail
-				// console.log(image)
-				let description =
-					bookItems[i].searchInfo?.textSnippet || 'No content provided'
-				showBookContainer(id, image, title, authorName, description)
+			if (data.items) {
+				const bookItems = data.items
+				// let bookItems = bookSeedData
+				console.log(bookItems)
+				for (let i = 0; i < bookItems.length; i++) {
+					let id = bookItems[i].id // getting the id's of the various books
+					let title = bookItems[i].volumeInfo.title
+					let authorName = bookItems[i].volumeInfo.authors
+					let image =
+						bookItems[i].volumeInfo.imageLinks?.thumbnail ||
+						'./assets/images/noImage.png'
+					let year = dayjs(bookItems[i].volumeInfo.publishedDate).format('YYYY')
+					// console.log(image)
+					let description =
+						bookItems[i].searchInfo?.textSnippet || 'No content provided'
+					let genre = bookItems[i].volumeInfo?.categories?.[0] || 'No category'
+					showBookContainer(
+						id,
+						image,
+						title,
+						authorName,
+						description,
+						genre,
+						year
+					)
+				}
+			} else {
+				console.log('no data')
 			}
 		})
 }
@@ -78,15 +103,31 @@ moodButtons.on('click', function (event) {
 		// to get the text info of the clicked button
 		let userMoodSelection = event.target.textContent
 		// console.log(userMoodSelection)
-		showBooksItems(userMoodSelection)
+		let categoryFeeling = feelingConverter(userMoodSelection)
+		console.log(categoryFeeling)
+		showBooksItems(categoryFeeling)
 	}
 })
 
 // user the feeling conveter to category
-// use the function with the category
-// use the showBookContainer function
+function feelingConverter(feeling) {
+	if (categories.EmotionMovieAssociations.hasOwnProperty(feeling)) {
+		const randomNumber = Math.floor(Math.random() * 2) + 1
+		return categories.EmotionMovieAssociations[feeling][randomNumber]
+	} else {
+		return 'No category'
+	}
+}
 
-function showBookContainer(id, imageURL, title, author, description) {
+function showBookContainer(
+	id,
+	imageURL,
+	title,
+	author,
+	description,
+	genre,
+	year
+) {
 	//added id
 	let bookContainer = $('<div>')
 	bookContainer.attr('id', id) // created id attr
@@ -115,6 +156,14 @@ function showBookContainer(id, imageURL, title, author, description) {
 	authorName.text('by ' + author)
 	authorName.attr('class', 'card-text')
 	cardBody.append(authorName)
+	let genreText = $('<p>')
+	genreText.text(genre)
+	genreText.attr('class', 'card-text')
+	cardBody.append(genreText)
+	let yearText = $('<p>')
+	yearText.text(year)
+	yearText.attr('class', 'card-text')
+	cardBody.append(yearText)
 	let descriptionText = $('<p>')
 	descriptionText.text(description)
 	descriptionText.attr('class', 'card-text')

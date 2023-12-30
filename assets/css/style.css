@@ -23,6 +23,9 @@ h1 {
 
 .card-body-minHeight {
 	height: 340px;
+	overflow: hidden;
+	white-space: wrap;
+	text-overflow: ellipsis;
 }
 
 .card-img-minHeight {
