@@ -1,3 +1,16 @@
+// Modal
+window.addEventListener('load', (event) => {
+	let modalDiv = $('#modalDisplay')
+	modalDiv.addClass('show')
+})
+
+if (localStorage.getItem('favourite') == null) {
+	window.onload = function () {
+		var myButton = document.getElementById('modalButton')
+		myButton.click()
+	}
+}
+
 const feelings = {
 	Happy: ['Joy', 'Satisfaction', 'Euphoria', 'Pride', 'Optimism', 'Relief'],
 	Sad: [
