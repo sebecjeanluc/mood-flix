@@ -112,7 +112,7 @@ moodButtons.on('click', function (event) {
 // user the feeling conveter to category
 function feelingConverter(feeling) {
 	if (categories.EmotionMovieAssociations.hasOwnProperty(feeling)) {
-		const randomNumber = Math.floor(Math.random() * 2) + 1
+		const randomNumber = Math.floor(Math.random() * 2) + 1 // change 2 to dataset.length
 		return categories.EmotionMovieAssociations[feeling][randomNumber]
 	} else {
 		return 'No category'
