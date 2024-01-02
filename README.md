@@ -50,7 +50,7 @@ This is a project for the bootcamp. The starter file is protected by the bootcam
 [Bootstrap](https://getbootstrap.com/)
 [jQuery](https://jquery.com/)
 [day.js](https://day.js.org/)
-[Movie API]()
+[TMDB Movies API](https://developer.themoviedb.org/docs)
 [Google Books API](https://developers.google.com/books/docs/v1/using)
 
 ### License
@@ -58,12 +58,11 @@ This is a project for the bootcamp. The starter file is protected by the bootcam
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
-
+Cemile Balkas - [Cemile Balkas on LinkedIn](https://www.linkedin.com/in/cemile-b-606084146/) - cemilebalkas@gmail.com
 Tak Kawamura - [@\_takuyakawamura](https://twitter.com/_takuyakawamura) - tkawamura11@gmail.com
-
 Sam-Wisdoms - [(https://www.linkedin.com/in/sam-wisdoms-amenyenu-4b825b297/)] - asamwisdoms@gmail.com
 
-
+>>>>>>> 4c327c443c61f59a53a50fdbb64f03b084c61dba
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
