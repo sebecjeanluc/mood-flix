@@ -36,7 +36,7 @@ let generateMovieCards = function (mood) {
                 let newCol = $('<div>').addClass('col-md-6 col-12 mb-2');
                 movieContainer.append(newCol);
 
-                let newCard = $('<div>').addClass('card'); //.css("width", "10rem")
+                let newCard = $('<div>').addClass('card');
                 newCol.append(newCard);
 
                 let moviePoster = $('<img>').addClass('card-img-top');
@@ -47,6 +47,9 @@ let generateMovieCards = function (mood) {
                 let cardBody = $('<div>').addClass('card-body');
                 let movieTitle = $('<h5>').addClass('card-title').text(movieArray[i].title);
                 let movieOwerview = $('<p>').addClass('card-text').text(movieArray[i].overview);
+
+                let shortOverview = shortenedOverview(movieArray[i].overview, 30);
+                movieOwerview.text(shortOverview);
 
                 newCard.append(cardBody);
 
@@ -114,7 +117,7 @@ let getGenreName = function (genreIds) {
 };
 
 const fetchRandomMovies = function () {
-    let randomMovieURL = "https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en&api_key=668bc020b016a4e4178a7d0b2987ac04&sort_by=popularity.desc&page=" + Math.floor(Math.random() * 100) + 1; // Get random page from API
+    let randomMovieURL = "https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en&api_key=668bc020b016a4e4178a7d0b2987ac04&sort_by=popularity.desc&page=" + Math.floor(Math.random() * 500); // Get random page from API
 
     fetch(randomMovieURL)
         .then(function (response) {
@@ -133,7 +136,7 @@ const fetchRandomMovies = function () {
                 let newCol = $('<div>').addClass('col-md-6 col-12 mb-2');
                 movieContainer.append(newCol);
 
-                let newCard = $('<div>').addClass('card'); //.css("width", "10rem")
+                let newCard = $('<div>').addClass('card');
                 newCol.append(newCard);
 
                 let moviePoster = $('<img>').addClass('card-img-top');
@@ -144,6 +147,9 @@ const fetchRandomMovies = function () {
                 let cardBody = $('<div>').addClass('card-body');
                 let movieTitle = $('<h5>').addClass('card-title').text(movieArray[i].title);
                 let movieOwerview = $('<p>').addClass('card-text').text(movieArray[i].overview);
+
+                let shortOverview = shortenedOverview(movieArray[i].overview, 30);
+                movieOwerview.text(shortOverview);
 
                 newCard.append(cardBody);
 
@@ -164,3 +170,15 @@ const fetchRandomMovies = function () {
 $(document).ready(function () {
     fetchRandomMovies();
 });
+
+
+const shortenedOverview = function(textContent, limit){
+    const words = textContent.split(' ');
+
+    if (words.length > limit) {
+        const shortenedWords = words.slice(0, limit);
+        return shortenedWords.join(' ') + '...'
+    } else {
+        return textContent;
+    };
+};
