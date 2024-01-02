@@ -186,6 +186,7 @@ movieSectionEl.on('click', function(event) {
   }
 })
 
+// Eventlistener 
 $("[data-button]").on('click', function(event){
 console.log(this.parentElement)
 $(event.currentTarget).closest('.fave-card').remove();

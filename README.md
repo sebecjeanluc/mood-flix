@@ -68,8 +68,8 @@ Tak Kawamura - tkawamura11@gmail.com
 [Takuya Kawamura on Github](https://github.com/sebecjeanluc)
 
 Sam-Wisdoms - asamwisdoms@gmail.com
-[Sampson Aglanu on LinkedIn](https://www.linkedin.com/in/sam-wisdoms-amenyenu-4b825b297/)
-[Sampson Aglanu on Github](https://github.com/Sam-Wisdoms)
+[Sam-Wisdoms on LinkedIn](https://www.linkedin.com/in/sam-wisdoms-amenyenu-4b825b297/)
+[Sam-Wisdoms Github](https://github.com/Sam-Wisdoms)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
