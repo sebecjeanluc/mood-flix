@@ -49,11 +49,16 @@ function createFavouriteBookDiv(
 
   const deleteButton = $('<button>')
   deleteButton.addClass('clear')
-  deleteButton.text('clear')
+  deleteButton.attr('data-button', 'clear')
+  deleteButton.text('Click here to clear')
+
 
   deleteButton.on("click", (event) =>{
-    const faveItemsFromStorage = JSON.parse(localStorage.getItem('favourite'))
-    console.log(faveItemsFromStorage)
+    //const faveItemsFromStorage = JSON.parse(localStorage.getItem('favourite'))
+    //console.log(faveItemsFromStorage)
+    $(event.currentTarget).closest('.fave-card').remove();
+    const faveItems = faveSectionEl.html();
+    localStorage.setItem('favourite', JSON.stringify(faveItems));
     
   })
 
@@ -70,6 +75,8 @@ function createFavouriteBookDiv(
   faveItems.push(faveSectionEl.html())
   localStorage.setItem('favourite', JSON.stringify(faveItems))
 }
+
+
 
 // Function to create fave movie card
 function createFavouriteMovieDiv(
@@ -109,7 +116,20 @@ function createFavouriteMovieDiv(
 
   const deleteButton = $('<button>')
   deleteButton.addClass('clear')
-  deleteButton.text('Click to clear')
+  deleteButton.attr('data-button', 'clear' )
+  deleteButton.text('Click here to clear')
+
+  
+  deleteButton.on("click", (event) =>{
+    //const faveItemsFromStorage = JSON.parse(localStorage.getItem('favourite'))
+    //console.log(faveItemsFromStorage)
+    $(event.currentTarget).closest('.fave-card').remove();
+    const faveItems = faveSectionEl.html();
+    localStorage.setItem('favourite', JSON.stringify(faveItems));
+    
+  })
+
+
 
   // Appending elements to construct fave movie card
   favedCardDivUl.append(favedCardDivLiTitle, favedCardDivLiYear, favedCardDivLiDescription)
@@ -119,9 +139,10 @@ function createFavouriteMovieDiv(
   let faveCardSection = $("#faved-section")
   faveCardSection.append(favedCardDiv)
 
-  // updates local storage 
-  let faveItems = faveSectionEl.html() // after
-  localStorage.setItem('favourite', JSON.stringify(faveItems)) // after
+
+  let faveItems = [] 
+  faveItems.push(faveSectionEl.html())
+  localStorage.setItem('favourite', JSON.stringify(faveItems))
 }
 
 // Event listener for clicking on a book
@@ -163,6 +184,13 @@ movieSectionEl.on('click', function(event) {
     // calling the fave movie card
     createFavouriteMovieDiv(movieImage, movieTitle, movieYear, movieDescription)
   }
+})
+
+$("[data-button]").on('click', function(event){
+console.log(this.parentElement)
+$(event.currentTarget).closest('.fave-card').remove();
+    const faveItems = faveSectionEl.html();
+    localStorage.setItem('favourite', JSON.stringify(faveItems));
 })
 
 
