@@ -138,7 +138,7 @@ function showBookContainer(
 	bookContainer.append(cardDiv)
 
 	let imageThumb = $('<img>')
-	imageThumb.attr('class', 'card-img-top card-img-minHeight')
+	imageThumb.attr('class', 'card-img-top card-img-minHeight book-card-div')
 	imageThumb.attr('src', imageURL)
 	cardDiv.append(imageThumb)
 
