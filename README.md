@@ -61,8 +61,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Tak Kawamura - [@\_takuyakawamura](https://twitter.com/_takuyakawamura) - tkawamura11@gmail.com
 
+Sam-Wisdoms - [(https://www.linkedin.com/in/sam-wisdoms-amenyenu-4b825b297/)] - asamwisdoms@gmail.com
 
-Cemile Balkas - [Cemile Balkas on LinkedIn](https://www.linkedin.com/in/cemile-b-606084146/) - cemilebalkas@gmail.com
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
