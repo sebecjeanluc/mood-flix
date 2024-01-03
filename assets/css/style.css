@@ -22,20 +22,12 @@ h1 {
 }
 
 .card-body-minHeight {
-	height: 340px;
+	height: auto;
 	overflow: hidden;
 	white-space: wrap;
 	text-overflow: ellipsis;
 }
 
-/* .card-img-minHeight {
-	height: 430px;
-<<<<<<< HEAD
-} */
-=======
-}
-
-#fave-section{
+#fave-section {
 	margin-bottom: 5px;
 }
->>>>>>> main
