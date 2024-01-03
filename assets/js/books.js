@@ -43,7 +43,7 @@ function randomCategory() {
 
 // A function to show the first loading page with category
 let randomCategoryName = randomCategory()
-console.log(randomCategoryName)
+// console.log(randomCategoryName)
 
 // Convert HTML texts to textarea
 function decodeHtmlString(str) {
@@ -52,7 +52,7 @@ function decodeHtmlString(str) {
 }
 
 // how many books you get from books API
-let maxResults = 10
+let maxResults = 20
 
 // A function show book items from Books API
 function showBooksItems(keyword) {
@@ -67,7 +67,7 @@ function showBooksItems(keyword) {
 		maxResults +
 		'&printType=books&:keyes&key=' +
 		API_KEY
-	console.log(queryURL)
+	// console.log(queryURL)
 	// return the expected items of books
 	fetch(queryURL)
 		.then(function (reponse) {
@@ -77,7 +77,7 @@ function showBooksItems(keyword) {
 			if (data.items) {
 				const bookItems = data.items
 				// let bookItems = bookSeedData
-				console.log(bookItems)
+				// console.log(bookItems)
 				for (let i = 0; i < bookItems.length; i++) {
 					let id = bookItems[i].id // getting the id's of the various books
 					let title = bookItems[i].volumeInfo.title
@@ -114,7 +114,7 @@ moodButtons.on('click', function (event) {
 		let userMoodSelection = event.target.textContent
 		// console.log(userMoodSelection)
 		let categoryFeeling = feelingConverter(userMoodSelection)
-		console.log(categoryFeeling)
+		// console.log(categoryFeeling)
 		showBooksItems(categoryFeeling)
 	}
 })
