@@ -129,8 +129,6 @@ function createFavouriteMovieDiv(
     
   })
 
-
-
   // Appending elements to construct fave movie card
   favedCardDivUl.append(favedCardDivLiTitle, favedCardDivLiYear, favedCardDivLiDescription)
   favedCardDiv.append(favedCardDivImg, favedCardDivUl, deleteButton)
@@ -138,7 +136,6 @@ function createFavouriteMovieDiv(
   // Appends the fave movie card to the fave section
   let faveCardSection = $("#faved-section")
   faveCardSection.append(favedCardDiv)
-
 
   let faveItems = [] 
   faveItems.push(faveSectionEl.html())
