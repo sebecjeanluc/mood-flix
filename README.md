@@ -35,7 +35,12 @@ In our upcoming project, we as a team will focus on developing key engineering s
 
 ### Preview
 
-![Preview](./assets/images/demo.png) it will be added later
+![Preview](./assets/images/demo.png)
+
+### Preview for smartphone
+
+![Preview](./assets/images/demo_sp1.png)
+![Preview](./assets/images/demo_sp2.png)
 
 #### This is the Github page
 

@@ -32,7 +32,6 @@ bookWrapper.attr('class', 'row')
 bookSection.append(bookWrapper)
 
 // Random category selection function
-// function randomCategory
 function randomCategory() {
 	// Use the floor, RAM index to get random number
 	const randomNumber = Math.floor(Math.random() * categoryItems.length) + 1
@@ -42,11 +41,20 @@ function randomCategory() {
 	return selectedCategoryItem
 }
 
-// console.log(randomCategory())
-// Create a function to show the first loading page with category
+// A function to show the first loading page with category
 let randomCategoryName = randomCategory()
-console.log(randomCategoryName)
+// console.log(randomCategoryName)
 
+// Convert HTML texts to textarea
+function decodeHtmlString(str) {
+	let decodedP = $('<p>').html(str)
+	return decodedP.text()
+}
+
+// how many books you get from books API
+let maxResults = 20
+
+// A function show book items from Books API
 function showBooksItems(keyword) {
 	// clear the result page
 	bookWrapper.empty()
@@ -55,9 +63,11 @@ function showBooksItems(keyword) {
 	let queryURL =
 		'https://www.googleapis.com/books/v1/volumes?q=famous+' +
 		keyword +
-		'&filter=ebooks&orderBy=relevance&maxResults=20&printType=books&:keyes&key=' +
+		'&filter=ebooks&orderBy=relevance&maxResults=' +
+		maxResults +
+		'&printType=books&:keyes&key=' +
 		API_KEY
-	console.log(queryURL)
+	// console.log(queryURL)
 	// return the expected items of books
 	fetch(queryURL)
 		.then(function (reponse) {
@@ -67,7 +77,7 @@ function showBooksItems(keyword) {
 			if (data.items) {
 				const bookItems = data.items
 				// let bookItems = bookSeedData
-				console.log(bookItems)
+				// console.log(bookItems)
 				for (let i = 0; i < bookItems.length; i++) {
 					let id = bookItems[i].id // getting the id's of the various books
 					let title = bookItems[i].volumeInfo.title
@@ -104,7 +114,7 @@ moodButtons.on('click', function (event) {
 		let userMoodSelection = event.target.textContent
 		// console.log(userMoodSelection)
 		let categoryFeeling = feelingConverter(userMoodSelection)
-		console.log(categoryFeeling)
+		// console.log(categoryFeeling)
 		showBooksItems(categoryFeeling)
 	}
 })
@@ -119,6 +129,7 @@ function feelingConverter(feeling) {
 	}
 }
 
+// Function to create book contents.
 function showBookContainer(
 	id,
 	imageURL,
@@ -149,23 +160,31 @@ function showBookContainer(
 	let cardTitle = $('<div>')
 	cardTitle.attr('class', 'card-title')
 	cardBody.append(cardTitle)
+
 	let bookTitle = $('<h5>')
-	bookTitle.text(title)
+	let titleShortend = shortenedOverview(title, 10)
+	bookTitle.text(titleShortend)
 	cardBody.append(bookTitle)
+
 	let authorName = $('<p>')
 	authorName.text('by ' + author)
 	authorName.attr('class', 'card-text')
 	cardBody.append(authorName)
+
 	let genreText = $('<p>')
 	genreText.text(genre)
 	genreText.attr('class', 'card-text')
 	cardBody.append(genreText)
+
 	let yearText = $('<p>')
 	yearText.text(year)
 	yearText.attr('class', 'card-text')
 	cardBody.append(yearText)
+
 	let descriptionText = $('<p>')
-	descriptionText.text(description)
+	let descriptionDecoded = decodeHtmlString(description)
+	descriptionDecoded = shortenedOverview(descriptionDecoded, 30)
+	descriptionText.text(descriptionDecoded)
 	descriptionText.attr('class', 'card-text')
 	cardBody.append(descriptionText)
 
