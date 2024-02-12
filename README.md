@@ -44,7 +44,7 @@ In our upcoming project, we as a team will focus on developing key engineering s
 
 #### This is the Github page
 
-[mood-flix](https://Sam-Wisdoms.github.io/mood-flix)
+[mood-flix](https://sebecjeanluc.github.io/mood-flix)
 
 ### Credits
 
